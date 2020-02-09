@@ -1,10 +1,20 @@
-# import pandas as pd
-import pandas as pd
+import re
  
-# list of strings
-lst = ['Geeks', 'For', 'Geeks', 'is', 
-            'portal', 'for', 'Geeks']
+log_file_path = r"SampleLog.log"
+regex = '/t'
+read_line = True
  
-# Calling DataFrame constructor on list
-df = pd.DataFrame(lst)
-print(df)
+with open(log_file_path, "r") as file:
+    match_list = []
+    if read_line == True:
+        for line in file:
+            for match in re.finditer(regex, line):
+                match_text = match.group()
+                match_list.append(match_text)
+                print(match_text)
+    else:
+        data = f.read()
+        for match in re.finditer(regex, data):
+            match_text = match.group()
+            match_list.append(match_text)
+file.close()
